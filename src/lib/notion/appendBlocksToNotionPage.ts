@@ -1,4 +1,5 @@
 import { Client } from '@notionhq/client';
+import type { BlockObjectRequest } from '@notionhq/client/build/src/api-endpoints';
 
 /**
  * 指定したNotionページにブロック配列を追記する
@@ -6,11 +7,10 @@ import { Client } from '@notionhq/client';
 export async function appendBlocksToNotionPage(
   notion: Client,
   pageId: string,
-  blocks: any[]
+  blocks: BlockObjectRequest[]
 ) {
-  // Notion API仕様上、childrenはobject: 'block'付きの配列で渡す必要がある
   await notion.blocks.children.append({
     block_id: pageId,
-    children: blocks.map(b => ({ ...b })),
+    children: blocks,
   });
 }

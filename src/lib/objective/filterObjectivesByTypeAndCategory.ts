@@ -6,10 +6,10 @@
  * @returns フィルタ済みページ配列
  */
 export function filterObjectivesByTypeAndCategory(
-  objectives: any[],
+  objectives: Record<string, any>[],
   quantOrQual: "定量" | "定性",
   category: "半期：行動計画" | "Q別：行動計画" | "月別：行動計画"
-): any[] {
+): Record<string, any>[] {
   return objectives.filter(page => {
     const properties = page.properties || {};
     const typeInfo = properties['種類']?.select;

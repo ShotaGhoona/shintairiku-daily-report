@@ -1,7 +1,9 @@
+import type { BlockObjectRequest } from '@notionhq/client/build/src/api-endpoints';
+
 /**
  * 文章（複数行）をNotion API用のブロック配列に変換（太字・見出し・区切り線・リスト対応）
  */
-export function convertTextToNotionBlocks(text: string) {
+export function convertTextToNotionBlocks(text: string): BlockObjectRequest[] {
   const boldPattern = /\*\*(.*?)\*\*/g;
 
   function parseRichText(line: string) {

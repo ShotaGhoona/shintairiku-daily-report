@@ -39,9 +39,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'No page found for given ID' }, { status: 404 });
     }
 
-    // 明日の日付を取得
-    const tomorrow = getTomorrowDate(pageInfo.date);
-
     // 明日のタスク一覧を取得
     const tasksTomorrow = await fetchTasksForUserTomorrow(
       notion,

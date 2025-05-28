@@ -27,8 +27,8 @@ export async function fetchObjectivesForUserInDateRange(
   });
 
   // さらに日付範囲で絞り込み
-  const filtered = [];
-  for (const page of response.results as any[]) {
+  const filtered: Record<string, any>[] = [];
+  for (const page of response.results as Record<string, any>[]) {
     const dateInfo = page.properties?.['日付']?.date;
     if (!dateInfo) continue;
     const start = dateInfo.start;

@@ -31,7 +31,7 @@ export async function fetchTasksForUserOnDate(
   });
 
   const tasks: TaskInfo[] = [];
-  for (const task of response.results as any[]) {
+  for (const task of response.results as Record<string, any>[]) {
     const titleList = task.properties['タスク名']?.title;
     if (!titleList || !titleList.length) continue;
     const taskName = titleList[0]?.plain_text ?? '';

@@ -25,7 +25,10 @@ export async function fetchDairyLogPage(
 
   if (!response.results.length) return null;
 
-  const page = response.results[0] as any;
+  const page = response.results[0] as {
+    properties: Record<string, any>;
+    id: string;
+  };
   const date = page.properties['日付']?.date?.start ?? '';
   const personId = page.properties['ユーザー']?.people?.[0]?.id ?? '';
   const pageId = page.id;

@@ -3,7 +3,7 @@
  * @param objectives Notionページ配列
  * @returns タイトル文字列配列
  */
-export function extractObjectiveTitles(objectives: any[]): string[] {
+export function extractObjectiveTitles(objectives: Record<string, any>[]): string[] {
   const titles: string[] = [];
   for (const page of objectives) {
     const titleList = page.properties?.['名前']?.title;
