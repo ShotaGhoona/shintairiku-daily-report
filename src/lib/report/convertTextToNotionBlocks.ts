@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { BlockObjectRequest } from '@notionhq/client/build/src/api-endpoints';
 
 /**

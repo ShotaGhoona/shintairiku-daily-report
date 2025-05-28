@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * 目標リストから「定量/定性」と「種類」の組み合わせで抽出
  * @param objectives Notionページ配列

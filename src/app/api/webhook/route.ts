@@ -6,7 +6,6 @@ import { getNotionClient } from '@/lib/notion/notionClient';
 import { fetchDairyLogPage } from '@/lib/notion/fetch/fetchDairyLogPage';
 import { fetchTasksForUserOnDate } from '@/lib/notion/fetch/fetchTasksForUserOnDate';
 import { fetchTasksForUserTomorrow } from '@/lib/notion/fetch/fetchTasksForUserTomorrow';
-import { getTomorrowDate } from '@/lib/utils/getTomorrowDate';
 import { generateFullDailyReportText } from '@/lib/report/generateFullDailyReportText';
 import { convertTextToNotionBlocks } from '@/lib/report/convertTextToNotionBlocks';
 import { appendBlocksToNotionPage } from '@/lib/notion/appendBlocksToNotionPage';
@@ -101,8 +100,11 @@ export async function POST(req: NextRequest) {
     await appendBlocksToNotionPage(notion, pageInfo.pageId, blocks);
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('/api/webhook error', error);
-    return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

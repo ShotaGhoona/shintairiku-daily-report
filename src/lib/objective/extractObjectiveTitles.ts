@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * 目標Notionページ配列からタイトル（名前）リストを抽出
  * @param objectives Notionページ配列
