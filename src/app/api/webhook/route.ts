@@ -22,7 +22,13 @@ async function verifyWebhook(req: NextRequest) {
   const body = await req.json();
   console.log('Webhook受信body:', JSON.stringify(body));
   // 必要に応じてシークレット検証など追加可能
-  const customId = body.ID || body.id || body['ID'] || body['id'];
+  // Notion Automation Webhook形式に対応
+  const customId =
+    body.ID ||
+    body.id ||
+    body['ID'] ||
+    body['id'] ||
+    body.data?.properties?.ID?.unique_id?.number;
   if (!customId) throw new Error('ID is required');
   return { customId };
 }
