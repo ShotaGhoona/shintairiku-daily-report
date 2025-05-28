@@ -20,6 +20,7 @@ const OBJECTIVE_DB_ID = process.env.NOTION_OBJECTIVE_DB_ID!;
 // Notion Webhookリクエストの検証・ID抽出
 async function verifyWebhook(req: NextRequest) {
   const body = await req.json();
+  console.log('Webhook受信body:', JSON.stringify(body));
   // 必要に応じてシークレット検証など追加可能
   const customId = body.ID || body.id || body['ID'] || body['id'];
   if (!customId) throw new Error('ID is required');
